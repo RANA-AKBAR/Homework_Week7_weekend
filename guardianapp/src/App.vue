@@ -1,22 +1,47 @@
 <template>
   <div id="app">
+    <header>
+      <h1>GUARDIAN</h1>
+      <article-select :Articles_prop ="articles"/>
+    </header>
 
   </div>
 </template>
 
+
+
+
+
+
+
 <script>
+import {eventBus} from '@/main.js';
+import ArticleSelect from '@/components/ArticleSelect.vue';
+
 
 export default {
-  name: 'app',
-  components: {
+  components:{
+    'article-select': ArticleSelect
+
+  },
+
+  data(){
+    return {
+      articles: [],
+    };
   },
   mounted() {
     fetch('https://content.guardianapis.com/search?q=brexit&format=json&api-key=test')
-    .then(response => response.json())
-    .then(console.log())
+    .then(res => res.json())
+    .then(resjson =>   this.articles = resjson.response.results);
   }
 }
 </script>
+
+
+
+
+
 
 <style>
 #app {
