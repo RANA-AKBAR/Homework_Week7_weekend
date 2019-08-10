@@ -2,14 +2,10 @@
   <select @change="articleSelected" >
     <option selected disabled></option>
 
-    <option v-for="(article, index) in articles" :value ="index"> {{article.webTitle}} </option>
+    <option v-for="(article, index) in Articles_prop" :value ="index"> {{article.webTitle}} </option>
 
   </select>
 </template>
-
-
-
-
 
 
 <script>
@@ -22,7 +18,7 @@ export default {
   methods: {
     articleSelected(event) {
     const selectedIndex = event.target.value;
-    eventBus.$emit('article-selected', selectedindex )
+    eventBus.$emit('article-selected', selectedIndex )
   }
 }
 }
